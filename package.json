@@ -1,24 +1,23 @@
 {
-  "name": "sb-vue",
-  "version": "0.1.0",
+  "name": "tree_chart",
+  "version": "0.0.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
+    "d3": "^7.8.5",
+    "d3-org-chart": "^3.1.1",
     "vue": "^3.3.4",
-    "d3-org-chart": "3",
-    "d3": "7"
+    "vue-router": "^4.2.5"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "^4.4.0",
-    "@vue/cli-plugin-eslint": "^4.4.0",
-    "@vue/cli-service": "^4.4.0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^6.2.2",
-    "vue-template-compiler": "^2.6.11"
+    "@iconify/vue": "^4.1.1",
+    "@vitejs/plugin-vue": "^4.4.0",
+    "sass": "^1.69.5",
+    "uid": "^2.0.2",
+    "vite": "^4.4.11"
   }
 }
