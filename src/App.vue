@@ -16,7 +16,6 @@ import Header from "./components/Header.vue"
   padding: 0;
   box-sizing: border-box;
 }
-
 .container {
   max-width: 1100px;
   margin: 0 auto;

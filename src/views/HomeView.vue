@@ -1,6 +1,5 @@
 <script setup>
 import { ref } from "vue";
-import {uid} from 'uid'; 
 
 import CreateItem from '../components/CreateItem.vue';
 
@@ -8,7 +7,7 @@ const itemList = ref([]);
 
 const itemCreate = (item) => {
   itemList.value.push({
-    id: uid(),
+    id: 2001,
     item,
     isCompleted: null,
     isEditing: null
