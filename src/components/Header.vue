@@ -20,39 +20,42 @@ import { RouterLink, RouterView } from "vue-router";
     </header>
 </template>
 
-<style lang="scss" scoped>
+<style scoped>
 header {
-background-color: #f1f1f1;
-nav {
+    background-color: aliceblue;
+    border-bottom: 2px solid black; 
+}
+
+header nav {
     display: flex;
     align-items: center;
-    padding: 25px 16px;
+    padding: 10px 12px;
+}
 
-    .branding {
+header .branding {
     display: flex;
     align-items: center;
-    gap: 8px;
-    img {
-        max-width: 50px;
-    }
+    gap: 18px;
+}
 
-    h1 {
-        font-size: 24px;
-    }
-    }
+header .branding img {
+    max-width: 50px;
+}
 
-    .nav-routes {
+header .branding h1 {
+    font-size: 24px;
+}
+
+header .nav-routes {
     display: flex;
     flex: 1;
     justify-content: flex-end;
     gap: 12px;
     list-style: none;
-
-    a {
-        text-decoration: none;
-        color: inherit;
-    }
-    }
 }
+
+header .nav-routes a {
+    text-decoration: none;
+    color: inherit;
 }
 </style>

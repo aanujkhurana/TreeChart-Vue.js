@@ -10,7 +10,7 @@
         :findRoot="findRoot"
         :nodeID="clickedNodeID"
       ></FloatingSidebar>
-      <Gspacelogo></Gspacelogo>
+      <Gspacelogo />
     </div>
   </template>
   
@@ -30,13 +30,11 @@
         if (!container.value || data.length === 0) {
           return;
         }
-  
         const chart = new OrgChart()
           .container(container.value)
           .data(data)
           .scaleExtent([0.1,2])
           .setActiveNodeCentered(true)
-          .compact(true)
           .nodeHeight((d) => 380)
           .nodeWidth((d) => 376)
           .childrenMargin((d) => 120)
@@ -95,7 +93,7 @@
             app.unmount();
             return chartUIHTML;
           })
-          .render();
+          .render().fit();
         return chart;
 
         // Chart functions
