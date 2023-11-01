@@ -28,25 +28,37 @@
   </div>
 </template>
 
-<script setup lang = 'ts'>
+<script>
 import { ref } from 'vue';
+
 import fullscreenIcon from '@/components/Icons/FloatingSidebar/fullscreenIcon.vue';
 import fitIcon from '@/components/Icons/FloatingSidebar/fitIcon.vue';
 import fitHorizontalIcon from '@/components/Icons/FloatingSidebar/fitHorizontalIcon.vue';
 import expandIcon from '@/components/Icons/FloatingSidebar/expandIcon.vue';
 import collapseIcon from '@/components/Icons/FloatingSidebar/collapseIcon.vue';
 import findRootIcon from '@/components/Icons/FloatingSidebar/findRootIcon.vue';
-import clearMarkIcon  from '@/components/Icons/FloatingSidebar/clearMarkIcon.vue';
+import clearMarkIcon from '@/components/Icons/FloatingSidebar/clearMarkIcon.vue';
 
-const { nodeID, fitChart, compactChart, expandAllNodes, collapseAllNodes, findRoot, clearMark } = defineProps([
-  'nodeID',
-  'fitChart',
-  'compactChart',
-  'expandAllNodes',
-  'collapseAllNodes',
-  'findRoot',
-  'clearMark'
-]);
+const nodeID = 'YourNodeID'; // Replace with the actual value
+
+const fitChart = () => {
+  // Implement your fitChart logic here
+};
+const compactChart = () => {
+  // Implement your compactChart logic here
+};
+const expandAllNodes = () => {
+  // Implement your expandAllNodes logic here
+};
+const collapseAllNodes = () => {
+  // Implement your collapseAllNodes logic here
+};
+const findRoot = (nodeID) => {
+  // Implement your findRoot logic here
+};
+const clearMark = () => {
+  // Implement your clearMark logic here
+};
 
 const isExpanded = ref(false);
 const isFullscreen = ref(false);
@@ -79,28 +91,36 @@ const toggleFullscreen = () => {
   }
 };
 
-interface SidebarButton {
-  id: number;
-  label: string;
-  clickHandler: Function;
-}
-
-const sidebarButtons: SidebarButton[] = [
+const sidebarButtons = [
   { id: 1, label: 'Fullscreen', clickHandler: toggleFullscreen },
   { id: 2, label: 'Fit', clickHandler: fitChart },
   { id: 7, label: 'Fit-Horizontal', clickHandler: compactChart },
   { id: 5, label: 'Expand All', clickHandler: expandAllNodes },
   { id: 6, label: 'Collapse All', clickHandler: collapseAllNodes },
-  { id: 8, label: 'Find Root', clickHandler: (nodeID: any) => {
-    if (findRoot) { findRoot(nodeID); }}},
+  { id: 8, label: 'Find Root', clickHandler: () => findRoot(nodeID) },
   { id: 9, label: 'Clear Mark', clickHandler: clearMark }
 ];
 
+export default {
+  data() {
+    return {
+      nodeID,
+      fitChart,
+      compactChart,
+      expandAllNodes,
+      collapseAllNodes,
+      findRoot,
+      clearMark,
+      isExpanded,
+      isFullscreen,
+      sidebarButtons,
+    };
+  },
+};
 </script>
 
 <style scoped>
 .floating-sidebar.expanded {
   width: 200px; /* Adjust the expanded width */
 }
-
 </style>

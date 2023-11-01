@@ -1,6 +1,5 @@
 <template>
-    <div>
-    <div class="chart-container relative w-auto h-auto" ref="chartContainer">
+    <div class="chart-container" ref="chartContainer">
       <FloatingSidebar
         class="floating-sidebar"
         :fitChart="fitChart"
@@ -13,7 +12,6 @@
       ></FloatingSidebar>
       <Gspacelogo></Gspacelogo>
     </div>
-  </div>
   </template>
   
   <script>
@@ -78,14 +76,14 @@
               `<div class="rounded-[42px] w-[400px] h-[52px] p-4 text-[#ffffff] text-center relative"
               style="background: linear-gradient(180deg,rgba(66, 133, 244, 1) 0%,rgba(32, 38, 171, 1) 100% );
               box-shadow: 0px 4px 16px 0px rgba(0, 44, 117, 0.4);
-              font: 600 15px 'inter','sans-serif'">
+              font: 600 15px,'sans-serif'">
                 ▲  Collapse ${node.data._directSubordinates} Parts
               </div>`
               :
               `<div class="rounded-[42px] w-[340px] h-[50px] p-4 text-[#ffffff] text-center relative"
                 style="background: linear-gradient(180deg,rgba(32, 38, 171, 1) 0%,rgba(66, 133, 244, 1) 100% );
                 box-shadow: 0px 4px 16px 0px rgba(0, 55, 146, 0.4);
-                font: 600 15px 'roboto','sans-serif'">
+                font: 600 15px,'sans-serif'">
                   ▼  Expand ${node.data._totalSubordinates} Parts
               </div>`}`;
           })
@@ -99,12 +97,56 @@
           })
           .render();
         return chart;
+
+        // Chart functions
+  function markNode(nodeID) {
+    if (chart) { // Check if chart is defined
+      chart.setHighlighted(nodeID).render();
+    }
+  }
+  function centerNode(nodeId) {
+    if (chart) {
+      // chart.fit(nodeId).render();
+      chart.setCentered(nodeId).render();
+    }
+  }
+  function findRoot(nodeID) {
+    if (chart) {
+      chart.setUpToTheRootHighlighted(nodeID).render().fit();
+    }
+  }
+  function fitChart() {
+    let compact = 0;
+    if (chart) {
+      chart.compact(!(compact++ % 2)).render().fit();
+    }
+  }
+  function expandAllNodes() {
+    if (chart) {
+      chart.expandAll().fit();
+    }
+  }
+  function collapseAllNodes() {
+    if (chart) {
+      chart.collapseAll().fit();
+    }
+  }
+  function compactChart() {
+    let compact = 0
+    if (chart) {
+      chart.compact(!!(compact++ % 2)).render().fit();
+    }
+  }
+  function clearMark() {
+    if (chart) {
+      chart.clearHighlighting();
+    }
+  }
       }
   
       onMounted(async () => {
         try {
           const data = await d3.csv("https://raw.githubusercontent.com/bumbeishvili/sample-data/main/org.csv");
-  
           chartContainer.value = renderOrgChart(chartContainer, data);
         } catch (error) {
           console.error('Error loading data:', error);
@@ -116,19 +158,22 @@
       };
     },
   };
-  </script>
+</script>
   
-  <style scoped>
-  * {
+<style scoped>
+* {
     font-family: "Rubik", sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-  }
-  
-  .container {
-    max-width: 1100px;
-    margin: 0 auto;
-  }
-  </style>
+}
+.chart-container {
+  background-color: aliceblue;
+}
+.floating-sidebar {
+  position: relative;
+  top: 40%;
+  z-index: 1000;
+}
+</style>
   
