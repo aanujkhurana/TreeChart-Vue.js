@@ -1,4 +1,4 @@
-# Highly customizable Vue and Typescript chart
+# Highly customizable Vue and Typescript Tree-chart
 
 <span class="badge-npmversion"><a href="https://npmjs.org/package/d3-org-chart" title="View this project on NPM"><img src="https://img.shields.io/npm/v/d3-org-chart.svg" alt="NPM version" /></a></span>
 
