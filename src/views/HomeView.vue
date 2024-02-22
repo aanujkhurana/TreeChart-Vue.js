@@ -1,7 +1,7 @@
 <script setup>
 import { ref } from "vue";
-
 import CreateItem from '../components/CreateItem.vue';
+import FloatingSidebar from '@/components/FloatingSidebar.vue';
 
 const itemList = ref([]);
 
@@ -20,6 +20,7 @@ const itemCreate = (item) => {
   <main>
     <h1>Create Item</h1>
     <CreateItem @create-item="itemCreate"/>
+    <FloatingSidebar></FloatingSidebar>
   </main>
 </template>
 
