@@ -42,3 +42,9 @@ npm run dev
 ```sh
 npm run build
 ```
+
+
+## Screenshot
+<div align="center">
+    <img src="/screenshots/img1.png" width="650px"</img>
+</div>
