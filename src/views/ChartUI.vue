@@ -92,16 +92,12 @@ defineProps({ data: Object });
 </template>
 
 <style scoped>
-.card-ui,
-.card-ui * {
-  box-sizing: border-box;
-}
 .card-ui {
   display: flex;
   flex-direction: column;
   gap: 10px;
-  align-items: flex-start;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   position: relative;
 }
 .bg {

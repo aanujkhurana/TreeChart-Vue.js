@@ -1,6 +1,5 @@
 <template>
   <div class="chart-container" ref="chartContainer">
-    <Gspacelogo></Gspacelogo>
   </div>
 </template>
   
@@ -9,7 +8,6 @@ import { ref, onMounted, createApp } from 'vue';
 import * as d3 from 'd3';
 import { OrgChart } from 'd3-org-chart';
 import ChartUI from './ChartUI.vue';
-import Gspacelogo from '@/components/Icons/Gspacelogo.vue'
 
   
 export default {
@@ -144,10 +142,15 @@ onMounted(async () => {
 </script>
   
 <style scoped>
-.floating-sidebar {
-  position: absolute;
-  top: 40%;
-  z-index: 1000;
+.chart-container {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f5f5f5;
 }
 </style>
   

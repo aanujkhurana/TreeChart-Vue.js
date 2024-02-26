@@ -1,31 +1,22 @@
 <template>
-  <div
-    class="fixed top-1/2 transform -translate-y-1/2 w-16 bg-black transition-width duration-300 ease-in-out rounded-6"
-    :class="{ 'expanded': isExpanded }"
-    @mouseenter="expandSidebar"
-    @mouseleave="collapseSidebar"
-  >
-    <div>
-      <span class="text-white justify-center font-bold flex m-2">{{ isExpanded ? 'ToolBOX' : 'Tools' }}</span>
-    </div>
-    <div class="flex flex-col gap-1.5 p-2.5">
-      <button
-        v-for="(button) in sidebarButtons"
-        :key="button.id"
-        class="flex items-center p-2 m-1 h-10 bg-transparent border-none hover:bg-white/30"
-        @click="button.clickHandler(nodeID)"
-      >
-        <fullscreenIcon v-if="button.label === 'Fullscreen'" />
-        <fitIcon v-if="button.label === 'Fit'" />
-        <fitHorizontalIcon v-if="button.label === 'Fit-Horizontal'" />
-        <expandIcon v-if="button.label === 'Expand All'" />
-        <collapseIcon v-if="button.label === 'Collapse All'" />
-        <findRootIcon v-if="button.label === 'Find Root'" />
-        <clearMarkIcon v-if="button.label === 'Clear Mark'" />
-        <span v-if="isExpanded" class="text-white font-bold m-4">{{ button.label }}</span>
-      </button>
-    </div>
+<div class="sidebar" :class="{ 'expanded': isExpanded }" @mouseenter="expandSidebar" @mouseleave="collapseSidebar">
+  <div>
+    <span class="title">{{ isExpanded ? 'ToolBOX' : 'Tools' }}</span>
   </div>
+  <div class="button-container">
+    <button v-for="(button) in sidebarButtons" :key="button.id" class="sidebar-button" @click="button.clickHandler(nodeID)">
+      <fullscreenIcon v-if="button.label === 'Fullscreen'" />
+      <fitIcon v-if="button.label === 'Fit'" />
+      <fitHorizontalIcon v-if="button.label === 'Fit-Horizontal'" />
+      <expandIcon v-if="button.label === 'Expand All'" />
+      <collapseIcon v-if="button.label === 'Collapse All'" />
+      <findRootIcon v-if="button.label === 'Find Root'" />
+      <clearMarkIcon v-if="button.label === 'Clear Mark'" />
+      <span v-if="isExpanded" class="button-label">{{ button.label }}</span>
+    </button>
+  </div>
+</div>
+
 </template>
 
 <script>
@@ -120,7 +111,55 @@ export default {
 </script>
 
 <style scoped>
-.floating-sidebar.expanded {
+.sidebar.expanded {
   width: 200px; /* Adjust the expanded width */
+}
+
+.sidebar {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4rem;
+  background-color: #000;
+  border-radius: 1.5rem;
+}
+
+.expanded {
+  width: 200px; /* Adjust the expanded width */
+}
+
+.title {
+  color: #fff;
+  font-weight: bold;
+  justify-content: center;
+  display: flex;
+  margin: 0.5rem;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 0.625rem; /* Equivalent to p-2.5 */
+}
+
+.sidebar-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.625rem; /* Equivalent to p-2 */
+  margin: 0.25rem; /* Equivalent to m-1 */
+  background-color: transparent;
+  border: none;
+}
+
+.sidebar-button:hover {
+  background-color: rgba(255, 255, 255, 0.3);
+}
+
+.button-label {
+  color: #fff;
+  font-weight: bold;
+  margin: 0.5rem;
 }
 </style>
