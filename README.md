@@ -4,6 +4,7 @@
 [![Vue Version](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
 [![TypeScript Version](https://img.shields.io/badge/typescript-4.x-blue.svg)](https://www.typescriptlang.org/)
 [![D3 Version](https://img.shields.io/badge/d3-6.x-orange.svg)](https://d3js.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-2.2.19-blueviolet.svg)](https://tailwindcss.com/)
 
 This repository contains a highly customized version of the d3-org-chart integrated with Vue and Typescript. It provides a flexible and visually appealing way to display hierarchical data in a tree-chart format.
 
