@@ -64,7 +64,7 @@ npm run build
 
 Here's a glimpse of what the tree-chart looks like:
 
-<div align="center">
+<div align="left">
     <img src="/screenshots/img1.png" width="650px" alt="Screenshot"/>
 </div>
 
