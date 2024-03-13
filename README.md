@@ -1,5 +1,5 @@
 
-[![VITE Version](https://img.shields.io/Vite/vite.svg)](https://vite.org/)
+[![Vite Version](https://img.shields.io/badge/Vite-4.x-yellow.svg)](https://vuejs.org/)(https://vite.org/)
 [![Vue Version](https://img.shields.io/badge/vue-2.x-brightgreen.svg)](https://vuejs.org/)
 [![TypeScript Version](https://img.shields.io/badge/typescript-4.x-blue.svg)](https://www.typescriptlang.org/)
 [![D3 Version](https://img.shields.io/badge/d3-6.x-orange.svg)](https://d3js.org/)
