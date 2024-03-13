@@ -2,7 +2,7 @@
 [![Vite Version](https://img.shields.io/badge/Vite-4.x-yellow.svg)](https://vitejs.dev)
 [![Vue Version](https://img.shields.io/badge/Vue-2.x-brightgreen.svg)](https://vuejs.org/)
 [![TypeScript Version](https://img.shields.io/badge/typescript-4.x-blue.svg)](https://www.typescriptlang.org/)
-[![D3 Version](https://img.shields.io/badge/d3-6.x-orange.svg)](https://d3js.org/)
+[![D3 Version](https://img.shields.io/badge/D3-6.x-orange.svg)](https://d3js.org/)
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-2.2.19-blueviolet.svg)](https://tailwindcss.com/)
 
 # Highly Customizable Vue and Typescript Tree-chart
