@@ -7,9 +7,7 @@ import Header from "./components/Header.vue"
   <div class="app">
     <Header />
     <main class="main-content">
-      <section class="chart-wrapper">
-        <RouterView />
-      </section>
+      <RouterView />
     </main>
   </div>
 </template>
@@ -50,26 +48,5 @@ header {
   align-items: center;
   padding: 1rem;
   overflow: auto;
-}
-
-/* Smart bordered chart container */
-.chart-wrapper {
-  border: 2px solid #ccc;
-  border-radius: 12px;
-  background-color: #fff;
-  padding: 1rem;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-  max-width: 90vw;
-  max-height: 85vh;
-  overflow: auto;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-/* Optional: If the tree chart overflows inside */
-.chart-wrapper > * {
-  max-width: 100%;
-  max-height: 100%;
 }
 </style>
