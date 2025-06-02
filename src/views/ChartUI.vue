@@ -1,4 +1,6 @@
-<script setup lang = "ts" >
+<script setup lang="ts">
+import { computed, defineProps, withDefaults } from 'vue';
+
 import hashIcon from '@/components/Icons/TreeChartUI/hashIcon.vue';
 import ownerIcon from '@/components/Icons/TreeChartUI/ownerIcon.vue';
 import costIcon from '@/components/Icons/TreeChartUI/costIcon.vue';
@@ -12,82 +14,145 @@ import nlogicalIcon from '@/components/Icons/TreeChartUI/nlogicalIcon.vue';
 import buildIcon from '@/components/Icons/TreeChartUI/buildIcon.vue';
 import notbuildIcon from '@/components/Icons/TreeChartUI/notbuildIcon.vue';
 
-defineProps({ data: Object });
+interface Data {
+  hash?: string;
+  Name?: string;
+  cost?: number | string;
+  currency?: string;
+  mass?: number;
+  leadtime?: number;
+  status?: string;
+  quantity?: number;
+  imageUrl?: string;
+  name?: string;
+  componentNumber?: string;
+  revision?: string;
+  makeorbuy?: string;
+  islogical?: boolean;
+  buildoninstallation?: boolean;
+}
+
+const props = withDefaults(defineProps<{ data: Data }>(), {
+  data: {},
+});
+
+const statusClass = computed(() => {
+  switch (props.data.status?.toLowerCase()) {
+    case 'draft':
+      return 'draft';
+    case 'critical design':
+      return 'cDesign';
+    case 'preliminary design':
+      return 'pDesign';
+    case 'production':
+      return 'production';
+    case 'qualified':
+      return 'qualified';
+    default:
+      return '';
+  }
+});
+
+const makeBuyIconComponent = computed(() => {
+  if (!props.data.makeorbuy) return makeBuyIcon;
+  const val = props.data.makeorbuy.toLowerCase();
+  if (val === 'make') return makeIcon;
+  if (val === 'buy') return buyIcon;
+  return makeBuyIcon;
+});
 </script>
 
 <template>
-  <div class="card-ui">
+  <div class="card-ui" role="region" aria-label="Component Chart Card">
     <div class="bg"></div>
-    <div class="hash">
+
+    <section class="hash" aria-label="Hash Information">
       <div class="hashbg"></div>
       <div class="hashbglong"></div>
-      <hashIcon/>
+      <hashIcon />
       <div class="hash3">Hash</div>
-      <div class="hash4">{{ data.hash || 'no hash' }}</div>
-    </div>
-    <div class="owner">
+      <div class="hash4">{{ props.data.hash || 'no hash' }}</div>
+    </section>
+
+    <section class="owner" aria-label="Owner Information">
       <div class="ownerbg"></div>
       <div class="ownerbglong"></div>
-      <ownerIcon/>
+      <ownerIcon />
       <div class="owner3">Owner</div>
-      <div class="owner4"> {{ data.Name || 'noname'}}</div>
-    </div>
-    <div class="cost">
-      <div class="cost-usd">Cost ({{ data.currency || 'USD' }})</div>
+      <div class="owner4">{{ props.data.Name || 'noname' }}</div>
+    </section>
+
+    <section class="cost" aria-label="Cost Information">
+      <div class="cost-usd">Cost ({{ props.data.currency || 'USD' }})</div>
       <div class="cost2">
-      <costIcon/>
-        <div class="cost3">{{ data.cost || "0" }}</div>
+        <costIcon />
+        <div class="cost3">{{ props.data.cost ?? '0' }}</div>
       </div>
-    </div>
-    <div class="mass">
+    </section>
+
+    <section class="mass" aria-label="Mass Information">
       <div class="mass-g">Mass (g)</div>
       <div class="mass2">
-        <massIcon/>
-        <div class="mass4">{{ data.mass || 0 }}</div>
+        <massIcon />
+        <div class="mass4">{{ props.data.mass ?? 0 }}</div>
       </div>
-    </div>
-    <div class="leadtime">
+    </section>
+
+    <section class="leadtime" aria-label="Lead Time Information">
       <div class="lead-time-days">LeadTime (days)</div>
       <div class="leadtime2">
-        <leadtimeIcon/>
-        <div class="lead">{{ data.leadtime || 0 }}</div>
+        <leadtimeIcon />
+        <div class="lead">{{ props.data.leadtime ?? 0 }}</div>
       </div>
-    </div>
-    <div class="status">
+    </section>
+
+    <section class="status" aria-label="Status Information">
       <div class="statusbg"></div>
-      <div :class="['statusbglong', { 'draft': data.status === 'draft', 'cDesign': data.status === 'critical design','pDesign': data.status === 'preliminary design', 'production': data.status === 'production', 'qualified': data.status === 'qualified' }]">
-      </div>
+      <div :class="['statusbglong', statusClass]"></div>
       <div class="status2">Status</div>
-      <div class="status3">{{ data.status || 'none' }}</div>
-    </div>
-    <div class="qty">
+      <div class="status3">{{ props.data.status || 'none' }}</div>
+    </section>
+
+    <section class="qty" aria-label="Quantity Information">
       <div class="otybg"></div>
       <div class="otybglong"></div>
       <div class="qty2">Quantity</div>
-      <div class="qty3">{{data.quantity || 0 }}</div>
-    </div>
-    <img v-if="data.imageUrl" class="image" :src="data.imageUrl" alt="Component Image"/>
-    <div class="name">
-      <div class="name2">{{ data.name }}</div>
-      <div class="cn-revision">CPN: {{ data.componentNumber || 'none' }} Revision: {{ data.revision || 'None' }}</div>
-    </div>
-    <div class="morb">
-      <makeIcon v-if="data.makeorbuy === 'Make' || data.makeorbuy === 'make'"/>
-      <buyIcon  v-else-if="data.makeorbuy === 'buy'"/>
-      <makeBuyIcon v-else/>
-    </div>
-    <div class="logical" v-if="data.islogical === true">
-      <logicalIcon/>
-    </div>
-    <div class="Nlogical" v-else>
-        <nlogicalIcon/>
-    </div>
-    <div class="boi" v-if="data.buildoninstallation === true">
-      <buildIcon/>
-    </div>
-    <div class="Nboi" v-else>
-      <notbuildIcon/>
-    </div>
+      <div class="qty3">{{ props.data.quantity ?? 0 }}</div>
+    </section>
+
+    <img
+      v-if="props.data.imageUrl"
+      class="image"
+      :src="props.data.imageUrl"
+      :alt="`Image of ${props.data.name || 'component'}`"
+      loading="lazy"
+    />
+
+    <section class="name" aria-label="Component Name and Revision">
+      <div class="name2">{{ props.data.name }}</div>
+      <div class="cn-revision">
+        CPN: {{ props.data.componentNumber || 'none' }} Revision:
+        {{ props.data.revision || 'None' }}
+      </div>
+    </section>
+
+    <section class="morb" aria-label="Make or Buy Status">
+      <component :is="makeBuyIconComponent" />
+    </section>
+
+    <section class="logical" v-if="props.data.islogical === true" aria-label="Logical Status">
+      <logicalIcon />
+    </section>
+    <section class="Nlogical" v-else aria-label="Non-Logical Status">
+      <nlogicalIcon />
+    </section>
+
+    <section class="boi" v-if="props.data.buildoninstallation === true" aria-label="Build on Installation">
+      <buildIcon />
+    </section>
+    <section class="Nboi" v-else aria-label="Not Build on Installation">
+      <notbuildIcon />
+    </section>
   </div>
 </template>
 

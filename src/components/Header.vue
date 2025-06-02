@@ -1,61 +1,100 @@
-
-<script>
-import { RouterLink, RouterView } from "vue-router";
+<script setup>
+import { RouterLink } from "vue-router";
 </script>
+
 <template>
-    <header>
-        <nav class="container">
-            <div class="branding">
-                <img src="../assets/Vue_Logo_Black.png" alt="">
-                <h1>
-                    Treechart
-                </h1>
-            </div>
-            <ul class="nav-routes">
-                <RouterLink to="/">Home</RouterLink>
-                <RouterLink to="/about">About</RouterLink>
-                <RouterLink to="/tree">Tree</RouterLink>
-            </ul>
-        </nav>
-    </header>
+  <header class="header">
+    <nav class="container">
+      <div class="branding">
+        <img src="../assets/Vue_Logo_Black.png" alt="Vue Logo" />
+        <h1>Treechart</h1>
+      </div>
+      <ul class="nav-routes">
+        <li><RouterLink to="/">Playground</RouterLink></li>
+        <li><RouterLink to="/about">About</RouterLink></li>
+      </ul>
+    </nav>
+  </header>
 </template>
 
 <style scoped>
-header {
-    background-color: aliceblue;
-    border-bottom: 2px solid black; 
+/* Reset spacing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-header nav {
-    display: flex;
-    align-items: center;
-    padding: 10px 12px;
+.header {
+  background-color: #f0f8ff;
+  border-bottom: 1px solid #ddd;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
 }
 
-header .branding {
-    display: flex;
-    align-items: center;
-    gap: 18px;
+nav.container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 1.2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+  flex-wrap: wrap;
 }
 
-header .branding img {
-    max-width: 50px;
+/* Branding */
+.branding {
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
-header .branding h1 {
-    font-size: 24px;
+.branding img {
+  height: 32px;
+  width: auto;
 }
 
-header .nav-routes {
-    display: flex;
-    flex: 1;
-    justify-content: flex-end;
-    gap: 12px;
-    list-style: none;
+.branding h1 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  color: #1e1e1e;
 }
 
-header .nav-routes a {
-    text-decoration: none;
-    color: inherit;
+/* Nav Links */
+.nav-routes {
+  display: flex;
+  gap: 1rem;
+  list-style: none;
+}
+
+.nav-routes a {
+  font-weight: 500;
+  text-decoration: none;
+  color: #333;
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: background 0.2s, color 0.2s;
+}
+
+.nav-routes a:hover {
+  background-color: #e0f0ff;
+  color: #007acc;
+}
+
+/* Responsive: stack on smaller screens */
+@media (max-width: 600px) {
+  nav.container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+
+  .nav-routes {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .nav-routes a {
+    width: 100%;
+  }
 }
 </style>
