@@ -5,7 +5,7 @@
     @mouseenter="expandSidebar"
     @mouseleave="collapseSidebar"
   >
-    <div class="title">{{ isExpanded ? 'ToolBOX' : 'Tools' }}</div>
+    <div class="title">Tools</div>
 
     <div class="button-container">
       <button
@@ -15,9 +15,6 @@
         @click="button.clickHandler(nodeID)"
       >
         <component :is="getIconComponent(button.label)" class="icon" />
-        <transition name="fade">
-          <span v-if="isExpanded" class="button-label">{{ button.label }}</span>
-        </transition>
       </button>
     </div>
   </div>
@@ -98,9 +95,9 @@ const getIconComponent = label => iconMap[label]
 .sidebar {
   position: fixed;
   top: 50%;
-  left: 1rem;
+  left: 2.5rem;
   transform: translateY(-50%);
-  width: 4rem;
+  width: 3rem;
   background-color: #000;
   border-radius: 1.5rem;
   overflow: hidden;
@@ -109,23 +106,19 @@ const getIconComponent = label => iconMap[label]
   z-index: 1000;
 }
 
-.sidebar.expanded {
-  width: 200px;
-}
-
 .title {
   color: #fff;
   font-weight: 600;
   text-align: center;
   padding: 0.5rem;
-  font-size: 1rem;
+  font-size: 0.5rem;
 }
 
 .button-container {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-  padding: 1rem 0.5rem;
+  gap: 0.5rem;
+  padding: 0.5rem;
 }
 
 .sidebar-button {
@@ -146,15 +139,8 @@ const getIconComponent = label => iconMap[label]
 }
 
 .icon {
-  width: 24px;
-  height: 24px;
-}
-
-.button-label {
-  margin-left: 0.75rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-  white-space: nowrap;
+  width: 14px;
+  height: 14px;
 }
 
 /* Optional: Fade transition for labels */
