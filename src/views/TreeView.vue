@@ -19,13 +19,13 @@ const {
   findRoot,
   clearMark,
   clickedNodeID: composableClickedNodeID,
+  normalChart,
 } = useOrgChart();
 
 onMounted(async () => {
   try {
-    const data = await d3.csv(
-      "https://raw.githubusercontent.com/bumbeishvili/sample-data/main/org.csv"
-    );
+    const data = await d3.json("/src/assets/org-data.json");
+
     render(chartContainer.value, data);
   } catch (error) {
     console.error("Error loading data:", error);
@@ -47,5 +47,6 @@ defineExpose({
   collapseAllNodes,
   findRootWrapper,
   clearMark,
+  normalChart,
 });
 </script>

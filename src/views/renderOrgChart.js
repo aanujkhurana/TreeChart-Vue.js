@@ -121,11 +121,25 @@ export function useOrgChart() {
       .render()
       .fit();
   };
+  const normalChart = () => {
+    chartInstance.value?.compact(false).render().fit();
+  };
 
   const expandAllNodes = () => chartInstance.value?.expandAll();
   const collapseAllNodes = () => chartInstance.value?.collapseAll();
-  const findRoot = (id) => chartInstance.value?.setCentered(id).render();
-  const clearMark = () => chartInstance.value?.clearHighlighting();
+  const findRoot = (nodeID) => {
+    if (!nodeID || !chartInstance.value) return;
+
+    chartInstance.value
+      .setExpanded((d) => d.id === nodeID)
+      .render()
+      .fit();
+  };
+  const clearMark = () => {
+    if (!chartInstance.value) return;
+
+    chartInstance.value.clearHighlighting?.().render().fit?.();
+  };
 
   return {
     chartInstance,
@@ -137,5 +151,6 @@ export function useOrgChart() {
     collapseAllNodes,
     findRoot,
     clearMark,
+    normalChart,
   };
 }
