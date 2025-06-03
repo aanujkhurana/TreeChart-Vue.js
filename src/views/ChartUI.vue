@@ -1,18 +1,18 @@
 <script setup lang="ts">
-import { computed, defineProps, withDefaults } from 'vue';
+import { computed, defineProps, withDefaults } from "vue";
 
-import hashIcon from '@/components/Icons/TreeChartUI/hashIcon.vue';
-import ownerIcon from '@/components/Icons/TreeChartUI/ownerIcon.vue';
-import costIcon from '@/components/Icons/TreeChartUI/costIcon.vue';
-import massIcon from '@/components/Icons/TreeChartUI/massIcon.vue';
-import leadtimeIcon from '@/components/Icons/TreeChartUI/leadtimeIcon.vue';
-import makeIcon from '@/components/Icons/TreeChartUI/makeIcon.vue';
-import buyIcon from '@/components/Icons/TreeChartUI/buyIcon.vue';
-import makeBuyIcon from '@/components/Icons/TreeChartUI/makeBuyIcon.vue';
-import logicalIcon from '@/components/Icons/TreeChartUI/logicalIcon.vue';
-import nlogicalIcon from '@/components/Icons/TreeChartUI/nlogicalIcon.vue';
-import buildIcon from '@/components/Icons/TreeChartUI/buildIcon.vue';
-import notbuildIcon from '@/components/Icons/TreeChartUI/notbuildIcon.vue';
+import hashIcon from "@/components/Icons/TreeChartUI/hashIcon.vue";
+import ownerIcon from "@/components/Icons/TreeChartUI/ownerIcon.vue";
+import costIcon from "@/components/Icons/TreeChartUI/costIcon.vue";
+import massIcon from "@/components/Icons/TreeChartUI/massIcon.vue";
+import leadtimeIcon from "@/components/Icons/TreeChartUI/leadtimeIcon.vue";
+import makeIcon from "@/components/Icons/TreeChartUI/makeIcon.vue";
+import buyIcon from "@/components/Icons/TreeChartUI/buyIcon.vue";
+import makeBuyIcon from "@/components/Icons/TreeChartUI/makeBuyIcon.vue";
+import logicalIcon from "@/components/Icons/TreeChartUI/logicalIcon.vue";
+import nlogicalIcon from "@/components/Icons/TreeChartUI/nlogicalIcon.vue";
+import buildIcon from "@/components/Icons/TreeChartUI/buildIcon.vue";
+import notbuildIcon from "@/components/Icons/TreeChartUI/notbuildIcon.vue";
 
 interface Data {
   hash?: string;
@@ -38,26 +38,26 @@ const props = withDefaults(defineProps<{ data: Data }>(), {
 
 const statusClass = computed(() => {
   switch (props.data.status?.toLowerCase()) {
-    case 'draft':
-      return 'draft';
-    case 'critical design':
-      return 'cDesign';
-    case 'preliminary design':
-      return 'pDesign';
-    case 'production':
-      return 'production';
-    case 'qualified':
-      return 'qualified';
+    case "draft":
+      return "draft";
+    case "critical design":
+      return "cDesign";
+    case "preliminary design":
+      return "pDesign";
+    case "production":
+      return "production";
+    case "qualified":
+      return "qualified";
     default:
-      return '';
+      return "";
   }
 });
 
 const makeBuyIconComponent = computed(() => {
   if (!props.data.makeorbuy) return makeBuyIcon;
   const val = props.data.makeorbuy.toLowerCase();
-  if (val === 'make') return makeIcon;
-  if (val === 'buy') return buyIcon;
+  if (val === "make") return makeIcon;
+  if (val === "buy") return buyIcon;
   return makeBuyIcon;
 });
 </script>
@@ -71,7 +71,7 @@ const makeBuyIconComponent = computed(() => {
       <div class="hashbglong"></div>
       <hashIcon />
       <div class="hash3">Hash</div>
-      <div class="hash4">{{ props.data.hash || 'no hash' }}</div>
+      <div class="hash4">{{ props.data.hash || "no hash" }}</div>
     </section>
 
     <section class="owner" aria-label="Owner Information">
@@ -79,14 +79,14 @@ const makeBuyIconComponent = computed(() => {
       <div class="ownerbglong"></div>
       <ownerIcon />
       <div class="owner3">Owner</div>
-      <div class="owner4">{{ props.data.Name || 'noname' }}</div>
+      <div class="owner4">{{ props.data.Name || "noname" }}</div>
     </section>
 
     <section class="cost" aria-label="Cost Information">
-      <div class="cost-usd">Cost ({{ props.data.currency || 'USD' }})</div>
+      <div class="cost-usd">Cost ({{ props.data.currency || "USD" }})</div>
       <div class="cost2">
         <costIcon />
-        <div class="cost3">{{ props.data.cost ?? '0' }}</div>
+        <div class="cost3">{{ props.data.cost ?? "0" }}</div>
       </div>
     </section>
 
@@ -110,7 +110,7 @@ const makeBuyIconComponent = computed(() => {
       <div class="statusbg"></div>
       <div :class="['statusbglong', statusClass]"></div>
       <div class="status2">Status</div>
-      <div class="status3">{{ props.data.status || 'none' }}</div>
+      <div class="status3">{{ props.data.status || "none" }}</div>
     </section>
 
     <section class="qty" aria-label="Quantity Information">
@@ -131,8 +131,8 @@ const makeBuyIconComponent = computed(() => {
     <section class="name" aria-label="Component Name and Revision">
       <div class="name2">{{ props.data.name }}</div>
       <div class="cn-revision">
-        CPN: {{ props.data.componentNumber || 'none' }} Revision:
-        {{ props.data.revision || 'None' }}
+        CPN: {{ props.data.componentNumber || "none" }} Revision:
+        {{ props.data.revision || "None" }}
       </div>
     </section>
 
@@ -140,14 +140,22 @@ const makeBuyIconComponent = computed(() => {
       <component :is="makeBuyIconComponent" />
     </section>
 
-    <section class="logical" v-if="props.data.islogical === true" aria-label="Logical Status">
+    <section
+      class="logical"
+      v-if="props.data.islogical === true"
+      aria-label="Logical Status"
+    >
       <logicalIcon />
     </section>
     <section class="Nlogical" v-else aria-label="Non-Logical Status">
       <nlogicalIcon />
     </section>
 
-    <section class="boi" v-if="props.data.buildoninstallation === true" aria-label="Build on Installation">
+    <section
+      class="boi"
+      v-if="props.data.buildoninstallation === true"
+      aria-label="Build on Installation"
+    >
       <buildIcon />
     </section>
     <section class="Nboi" v-else aria-label="Not Build on Installation">
@@ -704,7 +712,7 @@ const makeBuyIconComponent = computed(() => {
   overflow: hidden;
 }
 .Nlogical {
-  background: #DDDDDD;
+  background: #dddddd;
   border-radius: 8px;
   border-style: solid;
   border-color: #eeeeee;
@@ -749,7 +757,7 @@ const makeBuyIconComponent = computed(() => {
   overflow: hidden;
 }
 .Nboi {
-  background: #DDDDDD;
+  background: #dddddd;
   border-radius: 8px;
   border-style: solid;
   border-color: #eeeeee;

@@ -113,7 +113,7 @@ export function useOrgChart() {
   };
 
   const fitChart = () => chartInstance.value?.fit();
-  const compactChart = () => chartInstance.value?.compact();
+  const compactChart = () => chartInstance.value?.compact().render().fit();
   const expandAllNodes = () => chartInstance.value?.expandAll();
   const collapseAllNodes = () => chartInstance.value?.collapseAll();
   const findRoot = (id) => chartInstance.value?.setCentered(id).render();
