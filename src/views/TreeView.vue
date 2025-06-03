@@ -11,7 +11,6 @@ const chartContainer = ref<HTMLElement | null>(null);
 const clickedNodeID = ref<string | null>(null);
 
 const {
-  chartInstance,
   render,
   fitChart,
   compactChart,
