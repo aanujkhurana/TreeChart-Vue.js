@@ -28,7 +28,7 @@ export function useOrgChart() {
     const chart = new OrgChart()
       .container(container)
       .data(data)
-      .scaleExtent([0.1, 2])
+      .scaleExtent([0.1, 1])
       .setActiveNodeCentered(true)
       .nodeHeight(() => 380)
       .nodeWidth(() => 376)
