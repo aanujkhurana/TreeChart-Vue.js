@@ -113,7 +113,15 @@ export function useOrgChart() {
   };
 
   const fitChart = () => chartInstance.value?.fit();
-  const compactChart = () => chartInstance.value?.compact().render().fit();
+  const compactChart = () => {
+    if (!chartInstance.value) return;
+
+    chartInstance.value
+      .compact(true) // this is a setter in D3 Org Chart
+      .render()
+      .fit();
+  };
+
   const expandAllNodes = () => chartInstance.value?.expandAll();
   const collapseAllNodes = () => chartInstance.value?.collapseAll();
   const findRoot = (id) => chartInstance.value?.setCentered(id).render();
