@@ -4,19 +4,23 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from "vue";
-import { createApp } from "vue";
 import * as d3 from "d3";
-import { OrgChart } from "d3-org-chart";
-import ChartUI from "./ChartUI.vue";
 import { useOrgChart } from "./renderOrgChart";
 
 const chartContainer = ref<HTMLElement | null>(null);
 const clickedNodeID = ref<string | null>(null);
 
-// Declare at top-level or in a separate module
-let chartInstance: OrgChart | null = null;
-
-const { render } = useOrgChart();
+const {
+  chartInstance,
+  render,
+  fitChart,
+  compactChart,
+  expandAllNodes,
+  collapseAllNodes,
+  findRoot,
+  clearMark,
+  clickedNodeID: composableClickedNodeID,
+} = useOrgChart();
 
 onMounted(async () => {
   try {
@@ -29,39 +33,20 @@ onMounted(async () => {
   }
 });
 
-function fitChart() {
-  chartInstance?.fit();
-}
-
-function compactChart() {
-  chartInstance?.compact();
-}
-
-function expandAll() {
-  chartInstance?.expandAll().render();
-}
-
-function collapseAll() {
-  chartInstance?.collapseAll().render();
-}
-
-function findRoot(id?: string) {
-  const nodeId = id ?? clickedNodeID.value;
+// Optional wrapper if you want to pass ID dynamically
+function findRootWrapper(id?: string) {
+  const nodeId = id ?? clickedNodeID.value ?? composableClickedNodeID.value;
   if (nodeId) {
-    chartInstance?.setCentered(nodeId).render();
+    findRoot(nodeId);
   }
-}
-
-function clearMark() {
-  chartInstance?.clearHighlighting().render();
 }
 
 defineExpose({
   fitChart,
   compactChart,
-  expandAll,
-  collapseAll,
-  findRoot,
+  expandAllNodes,
+  collapseAllNodes,
+  findRootWrapper,
   clearMark,
 });
 </script>
