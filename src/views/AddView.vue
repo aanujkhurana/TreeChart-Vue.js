@@ -29,11 +29,12 @@
         <option>Dragon</option>
         <option>Raven</option>
         <option>Octopus</option>
+        <option>Fish</option>
       </select>
     </label>
 
     <label>
-      Parent ID (optional):
+      Parent ID*:
       <select v-model="formData.parentId">
         <option value="">-- No Parent (Root) --</option>
         <option v-for="node in nodes" :key="node.id" :value="node.id">
@@ -41,7 +42,10 @@
         </option>
       </select>
     </label>
-
+    <label
+      >Emojis:
+      <input v-model="formData.emojis" placeholder="Add some fun emojis (e.g. 🦁🎩🎻)" />
+    </label>
     <button type="submit">Add Node</button>
   </form>
 </template>
@@ -80,6 +84,8 @@ const handleSubmit = async () => {
       title: formData.title || undefined,
       hobby: formData.hobby || undefined,
       spiritAnimal: formData.spiritAnimal || undefined,
+      emojis: formData.emojis || undefined,
+      createdAt: new Date().toISOString(),
     };
 
     await axios.post("http://localhost:3001/api/nodes", payload);
