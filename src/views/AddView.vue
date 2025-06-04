@@ -76,6 +76,8 @@ const formData = reactive({
 });
 
 const nodes = ref<{ id: string; name: string }[]>([]);
+const showToast = ref(false);
+const formRef = ref<HTMLFormElement | null>(null);
 
 const fetchNodes = async () => {
   try {
@@ -95,15 +97,17 @@ const handleSubmit = async () => {
       title: formData.title || undefined,
       hobby: formData.hobby || undefined,
       spiritAnimal: formData.spiritAnimal || undefined,
-      emojis: formData.emojis || undefined,
+      emojis: formData.emojis || "👎",
       createdAt: new Date().toISOString(),
     };
 
     await axios.post("http://localhost:3001/api/nodes", payload);
-    alert("Node added successfully!");
 
+    showToast.value = true;
+    setTimeout(() => (showToast.value = false), 2000);
     // Reset form
     Object.keys(formData).forEach((key) => (formData[key] = ""));
+    formRef.value.reset();
     fetchNodes();
   } catch (error) {
     console.error("Error adding node:", error);
@@ -192,8 +196,8 @@ button:hover {
 
 .toast {
   position: absolute;
-  top: -20px;
-  right: 20px;
+  top: -50px;
+  width: 90%;
   background-color: #2ecc71;
   color: white;
   padding: 10px 16px;
