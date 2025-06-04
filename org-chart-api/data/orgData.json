@@ -4,58 +4,29 @@
     "parentId": "",
     "name": "Captain Emoji",
     "createdAt": "2025-07-01T12:00:00Z",
-    "title": "Lead Expressionist",
+    "title": "Emojis Expressionist",
     "hobby": "Emoji Design",
     "spiritAnimal": "Fox",
-    "emojis": "🦊🎨🌟🤘"
+    "emojis": "🌈🚀🔥"
   },
   {
     "id": "2",
     "parentId": "1",
-    "name": "Captain Fun",
+    "name": "Gun Fun",
     "createdAt": "2025-02-01T12:00:00Z",
-    "title": "Chief Entertainment Officer",
-    "hobby": "Skydiving",
+    "title": "GunsForFuns Entertainment",
+    "hobby": "shooting",
     "spiritAnimal": "Otter",
-    "emojis": "🦦🎉🌊"
+    "emojis": "🔫🎯"
   },
   {
     "id": "3",
     "parentId": "1",
-    "name": "Captain Fun",
-    "createdAt": "2025-09-01T12:00:00Z",
-    "title": "Chief Entertainment Officer",
-    "hobby": "Skydiving",
-    "spiritAnimal": "Otter",
-    "emojis": "🦦🎉🌊"
-  },
-  {
-    "id": "12",
-    "parentId": "1",
-    "name": "Anuj Khurana",
-    "createdAt": "2025-14-01T12:00:00Z",
-    "title": "something",
-    "hobby": "",
-    "spiritAnimal": "",
-    "emojis": "🔥"
-  },
-  {
-    "id": "421312",
-    "parentId": "12",
-    "name": "B123123",
-    "createdAt": "2025-12-01T12:00:00Z",
-    "title": "Footy",
-    "hobby": "kidding",
-    "spiritAnimal": "Dragon"
-  },
-  {
-    "id": "12313",
-    "parentId": "2",
-    "name": "Japan",
-    "title": "Hoshimsi",
-    "hobby": "Jump",
-    "spiritAnimal": "Dragon",
-    "emojis": "🌈",
-    "createdAt": "2025-06-03T13:52:48.398Z"
+    "name": "Jam Cam",
+    "title": "Jamming",
+    "hobby": "Camming",
+    "spiritAnimal": "Sloth",
+    "createdAt": "2025-06-04T09:35:37.703Z",
+    "emojis": "🐳⚡️"
   }
 ]
