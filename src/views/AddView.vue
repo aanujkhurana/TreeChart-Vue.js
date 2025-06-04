@@ -57,6 +57,7 @@ const formData = reactive({
   title: "",
   hobby: "",
   spiritAnimal: "",
+  emojis: "",
 });
 
 const nodes = ref<{ id: string; name: string }[]>([]);
