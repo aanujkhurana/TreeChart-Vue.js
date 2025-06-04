@@ -1,5 +1,6 @@
 <template>
   <form @submit.prevent="handleSubmit" class="form-container" ref="formRef">
+    <h2 class="header-txt">Create New Node</h2>
     <label>
       <span>ID:</span>
       <input v-model="formData.id" placeholder="Unique Node ID" required />
@@ -48,10 +49,10 @@
       <span>Emojis:</span>
       <input v-model="formData.emojis" placeholder="Whatever" />
     </label>
-
+    <span class="sub-txt">Image will be auto generated</span>
     <div class="button-group">
-      <button type="submit">➕ Add Node</button>
-      <button type="button" class="secondary" @click="handleReset">🧹 Clear</button>
+      <button type="button" class="secondary" outline @click="handleReset">Clear</button>
+      <button type="submit">+ Add Node</button>
     </div>
 
     <!-- Toast message -->
@@ -132,6 +133,14 @@ onMounted(fetchNodes);
   position: relative;
 }
 
+.header-txt {
+  font-size: 24px;
+  font-weight: 600;
+  color: #4d329c;
+  margin-bottom: 2px;
+  text-align: center;
+}
+
 label {
   display: flex;
   align-items: center;
@@ -166,9 +175,15 @@ select:focus {
 
 .button-group {
   display: flex;
-  justify-content: flex-end;
-  gap: 12px;
-  margin-top: 8px;
+  justify-content: space-between;
+  gap: 22px;
+  /* margin-top: 8px; */
+}
+
+.sub-txt {
+  font-size: 12px;
+  color: #888;
+  text-align: right;
 }
 
 button {
