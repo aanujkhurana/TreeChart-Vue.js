@@ -48,9 +48,7 @@ const props = defineProps<{
   compactChart: () => void;
   expandAllNodes: () => void;
   collapseAllNodes: () => void;
-  findRoot: (id: string) => void;
-  clearMark: () => void;
-  normalChart?: () => void; // Optional prop for normal chart
+  normalChart?: () => void;
 }>();
 
 const toggleFullscreen = () => {
@@ -76,8 +74,6 @@ const sidebarButtons = [
   { id: 4, label: "Fit-Vertical", clickHandler: () => props.normalChart?.() },
   { id: 5, label: "Expand All", clickHandler: () => props.expandAllNodes?.() },
   { id: 6, label: "Collapse All", clickHandler: () => props.collapseAllNodes?.() },
-  { id: 7, label: "Find Root", clickHandler: () => props.findRoot?.(nodeID.value) },
-  { id: 8, label: "Clear Mark", clickHandler: () => props.clearMark?.() },
 ];
 
 // Map label to icon component
@@ -87,9 +83,7 @@ const iconMap = {
   "Fit-Horizontal": fitHorizontalIcon,
   "Expand All": expandIcon,
   "Collapse All": collapseIcon,
-  "Find Root": findRootIcon,
-  "Clear Mark": clearMarkIcon,
-  "Fit-Vertical": fitHorizontalIcon, // Assuming you want the same icon for normal char
+  "Fit-Vertical": fitHorizontalIcon,
 };
 
 const getIconComponent = (label) => iconMap[label];
