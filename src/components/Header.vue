@@ -11,6 +11,7 @@ import { RouterLink } from "vue-router";
       </div>
       <ul class="nav-routes">
         <li><RouterLink to="/">Playground</RouterLink></li>
+        <li><RouterLink to="/add">Add Node</RouterLink></li>
         <li><RouterLink to="/about">About</RouterLink></li>
       </ul>
     </nav>
