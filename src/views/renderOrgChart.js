@@ -91,6 +91,11 @@ export function useOrgChart() {
       .render()
       .fit();
 
+    d3.select(container)
+      .select("svg")
+      .attr("width", "100%")
+      .attr("height", "100vh");
+
     chartInstance.value = chart;
   };
 
