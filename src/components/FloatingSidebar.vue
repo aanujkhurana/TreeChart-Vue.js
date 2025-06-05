@@ -13,8 +13,9 @@
         :key="button.id"
         class="sidebar-button"
         @click="button.clickHandler"
+        :title="button.label"
       >
-        <component :is="getIconComponent(button.label)" class="icon" />
+        <span class="material-icons icon">{{ button.icon }}</span>
         <transition name="fade">
           <span v-if="isExpanded" class="button-label">{{ button.label }}</span>
         </transition>
@@ -68,12 +69,37 @@ const toggleFullscreen = () => {
 
 // Sidebar buttons
 const sidebarButtons = [
-  { id: 1, label: "Fullscreen", clickHandler: () => toggleFullscreen() },
-  { id: 2, label: "Fit", clickHandler: () => props.fitChart?.() },
-  { id: 3, label: "Fit-Horizontal", clickHandler: () => props.compactChart?.() },
-  { id: 4, label: "Fit-Vertical", clickHandler: () => props.normalChart?.() },
-  { id: 5, label: "Expand All", clickHandler: () => props.expandAllNodes?.() },
-  { id: 6, label: "Collapse All", clickHandler: () => props.collapseAllNodes?.() },
+  {
+    id: 1,
+    label: "Fullscreen",
+    icon: "fullscreen",
+    clickHandler: () => toggleFullscreen(),
+  },
+  { id: 2, label: "Fit", icon: "zoom_out_map", clickHandler: () => props.fitChart?.() },
+  {
+    id: 3,
+    label: "Fit-Horizontal",
+    icon: "swap_horiz",
+    clickHandler: () => props.compactChart?.(),
+  },
+  {
+    id: 4,
+    label: "Fit-Vertical",
+    icon: "swap_vert",
+    clickHandler: () => props.normalChart?.(),
+  },
+  {
+    id: 5,
+    label: "Expand All",
+    icon: "unfold_more",
+    clickHandler: () => props.expandAllNodes?.(),
+  },
+  {
+    id: 6,
+    label: "Collapse All",
+    icon: "unfold_less",
+    clickHandler: () => props.collapseAllNodes?.(),
+  },
 ];
 
 // Map label to icon component
@@ -141,8 +167,13 @@ const getIconComponent = (label) => iconMap[label];
 }
 
 .icon {
+  font-family: "Material Icons";
+  font-size: 24px;
   width: 24px;
   height: 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .button-label {
