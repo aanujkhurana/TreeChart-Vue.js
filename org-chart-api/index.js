@@ -1,3 +1,5 @@
+import cors from "cors";
+
 const express = require("express");
 const fs = require("fs");
 const cors = require("cors");
@@ -9,6 +11,14 @@ const dataFilePath = path.join(__dirname, "data", "orgData.json");
 
 app.use(cors());
 app.use(express.json());
+
+app.use(
+  cors({
+    origin:
+      "https://treechartplayground.netlify.app  || 'http://localhost:3000',",
+    methods: ["GET", "POST", "PUT", "DELETE"],
+  })
+);
 
 // GET: Read all nodes
 app.get("/api/nodes", (req, res) => {
