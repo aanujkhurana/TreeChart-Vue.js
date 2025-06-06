@@ -9,6 +9,7 @@ import { useOrgChart } from "./renderOrgChart";
 
 const chartContainer = ref<HTMLElement | null>(null);
 const clickedNodeID = ref<string | null>(null);
+const apiURL = import.meta.env.VITE_API_URL;
 
 const {
   render,
@@ -23,10 +24,11 @@ const {
 } = useOrgChart();
 
 onMounted(async () => {
+  console.log("Backend URL:", apiURL);
   try {
     // const data = await d3.json("/src/assets/org-data.json");
-    const data = await d3.json("http://localhost:3001/api/nodes");
-
+    // const data = await d3.json("http://localhost:3001/api/nodes");
+    const data = await d3.json(`${apiURL}/api/nodes`);
     render(chartContainer.value, data);
   } catch (error) {
     console.error("Error loading data:", error);

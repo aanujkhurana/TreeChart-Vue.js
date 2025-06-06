@@ -82,7 +82,10 @@ const formRef = ref<HTMLFormElement | null>(null);
 
 const fetchNodes = async () => {
   try {
-    const res = await axios.get("http://localhost:3001/api/nodes");
+    // const res = await axios.get("http://localhost:3001/api/nodes");
+    const res = await axios.get(`${import.meta.env.VITE_API_URL}/api/nodes`);
+
+
     nodes.value = res.data;
   } catch (error) {
     console.error("Error fetching nodes:", error);
@@ -102,7 +105,8 @@ const handleSubmit = async () => {
       createdAt: new Date().toISOString(),
     };
 
-    await axios.post("http://localhost:3001/api/nodes", payload);
+    // await axios.post("http://localhost:3001/api/nodes", payload);
+    await axios.post(`${import.meta.env.VITE_API_URL}/api/nodes`, payload);
 
     showToast.value = true;
     setTimeout(() => (showToast.value = false), 2000);
