@@ -37,8 +37,10 @@ const props = defineProps<{
   fitChart: () => void;
   compactChart: () => void;
   expandAllNodes: () => void;
-  collapseAllNodes: () => void;
-  normalChart?: () => void;
+  directionBottom?: () => void;
+  directionTop?: () => void;
+  directionLeft?: () => void;
+  directionRight?: () => void;
 }>();
 
 const toggleFullscreen = () => {

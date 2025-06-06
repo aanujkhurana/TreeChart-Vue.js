@@ -6,8 +6,6 @@
     :fitChart="fitChart"
     :compactChart="directionTop"
     :expandAllNodes="expandAllNodes"
-    :collapseAllNodes="collapseAllNodes"
-    :normalChart="directionRight"
     :directionBottom="directionBottom"
     :directionTop="directionTop"
     :directionLeft="directionLeft"
