@@ -27,17 +27,6 @@
 <script setup lang="ts">
 import { ref } from "vue";
 
-import fullscreenIcon from "@/components/Icons/FloatingSidebar/fullscreenIcon.vue";
-import fitIcon from "@/components/Icons/FloatingSidebar/fitIcon.vue";
-import fitHorizontalIcon from "@/components/Icons/FloatingSidebar/fitHorizontalIcon.vue";
-import expandIcon from "@/components/Icons/FloatingSidebar/expandIcon.vue";
-import collapseIcon from "@/components/Icons/FloatingSidebar/collapseIcon.vue";
-import findRootIcon from "@/components/Icons/FloatingSidebar/findRootIcon.vue";
-import clearMarkIcon from "@/components/Icons/FloatingSidebar/clearMarkIcon.vue";
-
-// Dummy nodeID, replace with actual logic later
-const nodeID = "YourNodeID";
-
 const isExpanded = ref(false);
 const isFullscreen = ref(false);
 
@@ -101,18 +90,6 @@ const sidebarButtons = [
     clickHandler: () => props.collapseAllNodes?.(),
   },
 ];
-
-// Map label to icon component
-const iconMap = {
-  Fullscreen: fullscreenIcon,
-  Fit: fitIcon,
-  "Fit-Horizontal": fitHorizontalIcon,
-  "Expand All": expandIcon,
-  "Collapse All": collapseIcon,
-  "Fit-Vertical": fitHorizontalIcon,
-};
-
-const getIconComponent = (label) => iconMap[label];
 </script>
 
 <style scoped>
