@@ -24,7 +24,8 @@ const {
 
 onMounted(async () => {
   try {
-    const data = await d3.json("/src/assets/org-data.json");
+    // const data = await d3.json("/src/assets/org-data.json");
+    const data = await d3.json("http://localhost:3001/api/nodes");
 
     render(chartContainer.value, data);
   } catch (error) {
@@ -48,5 +49,6 @@ defineExpose({
   findRootWrapper,
   clearMark,
   normalChart,
+  clickedNodeID,
 });
 </script>
