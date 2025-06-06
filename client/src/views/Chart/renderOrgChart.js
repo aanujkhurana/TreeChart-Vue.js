@@ -2,22 +2,8 @@ import { ref } from "vue";
 import * as d3 from "d3";
 import { OrgChart } from "d3-org-chart";
 import { createApp } from "vue";
-import ChartUI from "./ChartUI.vue";
+import ChartUI from "./chat_ui.vue";
 
-/**
- * Custom composable for working with d3-org-chart.
- * @returns {{
- *   chartInstance: import('vue').Ref<any>,
- *   clickedNodeID: import('vue').Ref<string|null>,
- *   render: (container: HTMLElement|null, data: any[]) => void,
- *   fitChart: () => void,
- *   compactChart: () => void,
- *   expandAllNodes: () => void,
- *   collapseAllNodes: () => void,
- *   findRoot: (id: string) => void,
- *   clearMark: () => void
- * }}
- */
 export function useOrgChart() {
   const chartInstance = ref(null);
   const clickedNodeID = ref(null);
@@ -37,6 +23,33 @@ export function useOrgChart() {
       .compactMarginPair(() => 120)
       .siblingsMargin(() => 120)
 
+      // .nodeUpdate(function (d) {
+      //   d3.select(this)
+      //     .select(".node-rect")
+      //     .attr("width", 386)
+      //     .attr("height", 385)
+      //     .attr("stroke", (d) =>
+      //       d.data._highlighted || d.data._upToTheRootHighlighted
+      //         ? "#4285F4"
+      //         : "none"
+      //     )
+      //     .attr("stroke-width", (d) =>
+      //       d.data._highlighted || d.data._upToTheRootHighlighted ? 8 : 2
+      //     )
+      //     .attr("y", -3)
+      //     .attr("x", -3)
+      //     .attr("stroke-linejoin", "round")
+      //     .style("stroke-alignment", "outer");
+      // })
+
+      .onNodeClick((d) => {
+        console.log(d);
+        clickedNodeID.value = d.data.id;
+        fitChart();
+        markNode(d.data.id);
+        clearMark();
+      })
+
       .linkUpdate(function (d) {
         d3.select(this)
           .attr("stroke", (d) =>
@@ -47,13 +60,6 @@ export function useOrgChart() {
           );
         if (d.data._upToTheRootHighlighted) d3.select(this).raise();
       })
-
-      // .onNodeClick((d) => {
-      //   clickedNodeID.value = d.id;
-      //   chart.setExpanded(d.id, !chart.isExpanded(d.id));
-      //   chart.fit();
-      //   chartInstance.value?.render();
-      // })
 
       .nodeButtonX(() => -80)
       .nodeButtonY(() => -20)
@@ -106,22 +112,21 @@ export function useOrgChart() {
   const compactChart = () => {
     chartInstance.value?.layout("left").render().fit();
   };
-
   const expandAllNodes = () => chartInstance.value?.expandAll().fit();
   const collapseAllNodes = () => chartInstance.value?.collapseAll().fit();
-  const findRoot = (nodeID) => {
-    if (!nodeID || !chartInstance.value) return;
-
-    chartInstance.value
-      .setExpanded((d) => d.id === nodeID)
-      .render()
-      .fit();
-  };
+  function findRoot(nodeID) {
+    // if (!nodeID || !chartInstance.value) return;
+    chartInstance.value?.setExpanded(nodeID);
+  }
   const clearMark = () => {
     if (!chartInstance.value) return;
 
     chartInstance.value.clearHighlighting?.().render().fit?.();
   };
+  function markNode(nodeID) {
+    // Check if chart is defined
+    chartInstance.value?.setHighlighted(nodeID);
+  }
 
   return {
     chartInstance,
