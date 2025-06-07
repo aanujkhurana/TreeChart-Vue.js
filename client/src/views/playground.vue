@@ -1,6 +1,6 @@
 <template>
   <div class="chart-container" ref="chartContainer"></div>
-  <FloatingSidebar
+  <Sidebar
     :fitChart="fitChart"
     :compactChart="directionTop"
     :expandAllNodes="expandAllNodes"
@@ -25,7 +25,7 @@
 </template>
 <script setup lang="ts">
 import { nextTick, onMounted, ref } from "vue";
-import FloatingSidebar from "@/components/FloatingSidebar.vue";
+import Sidebar from "@/components/sidebar.vue";
 import * as d3 from "d3";
 import { useOrgChart } from "./Chart/renderOrgChart";
 import NodeUI from "./Chart/node_ui.vue";
