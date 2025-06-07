@@ -1,29 +1,23 @@
-# TreeChart Playground
 
-A visual, interactive Org Chart builder built with **Vue 3**, **D3**, and **Express.js**. Users can view, explore, and dynamically add new nodes to the chart with data persisted on a backend server.
+[![Vite Version](https://img.shields.io/badge/Vite-4.x-yellow.svg)](https://vitejs.dev)
+[![Vue Version](https://img.shields.io/badge/Vue-2.x-brightgreen.svg)](https://vuejs.org/)
+[![TypeScript Version](https://img.shields.io/badge/typescript-4.x-blue.svg)](https://www.typescriptlang.org/)
+[![D3 Version](https://img.shields.io/badge/D3-6.x-orange.svg)](https://d3js.org/)
+
+# TreeChart Playground
+A highly customized version of the d3-org-chart. It provides a flexible and visually appealing way to display hierarchical data in a tree-chart format.
+
+TreeChart Playground is a visual, Org Chart built with **Vue 3**, **D3**, and **Express.js**. Users can view, explore, and dynamically add new nodes to the chart with data persisted on a backend server.
 
 [![Netlify Status](https://api.netlify.com/api/v1/badges/ee1abb85-9b39-42a4-8c7a-63ccbb89c77c/deploy-status)](https://app.netlify.com/projects/treechartplayground/deploys)
-
----
+[![Render Status](https://render.com/api/websites/tree-chart-backend/status)](https://render.com/deploys/tree-chart-backend)
 
 ## 🔗 Live Demo
 
-**Frontend**: [treechartplayground.netlify.app](https://treechartplayground.netlify.app)  
+**Frontend**: [treechartplayground.netlify.app](https://treechartplayground.netlify.app)
+
 **Backend**: [tree-chart-backend.onrender.com](https://tree-chart-backend.onrender.com)  
 _(Render takes ~50 seconds to cold start)_
-
----
-
-## 🧩 Features
-
-✅ Dynamic Org Chart powered by D3  
-✅ Smooth zoom/pan and scale transitions  
-✅ Add new nodes via a modern Vue form  
-✅ Backend API with persistent JSON storage  
-✅ Responsive design with collapsible sidebar  
-✅ Node content rendered as custom Vue components  
-✅ Accessible UI with keyboard and ARIA support  
-✅ Cold-start friendly loading screen
 
 ---
 
@@ -74,8 +68,6 @@ git clone https://github.com/yourusername/treechart-playground.git
 cd treechart-playground
 ```
 
----
-
 ### 2. Install Frontend Dependencies
 
 ```bash
@@ -83,16 +75,12 @@ cd client
 npm install
 ```
 
----
-
 ### 3. Install Backend Dependencies
 
 ```bash
 cd ../service
 npm install
 ```
-
----
 
 ### 4. Start the Development Servers
 
@@ -112,7 +100,6 @@ npm run dev
 
 The app should now be running at [http://localhost:5173](http://localhost:5173)
 
----
 
 ## 🌐 API Endpoints
 
@@ -123,7 +110,6 @@ The app should now be running at [http://localhost:5173](http://localhost:5173)
 
 All data is saved in a flat JSON format under the `db/` directory.
 
----
 
 ## ⚙️ Environment Variables
 
@@ -132,8 +118,6 @@ Create a `.env` file in the `client/` directory:
 ```
 VITE_API_URL=https://tree-chart-backend.onrender.com
 ```
-
----
 
 ## 🔒 CORS Setup (Backend)
 
@@ -153,39 +137,10 @@ origin: ["http://localhost:5173", "https://treechartplayground.netlify.app"]
 * 🧱 Modular component system
 * 🧾 Undo/redo history support
 
----
+## How to Contribute
 
-## 📸 Screenshots
-
-<details>
-  <summary>📈 Org Chart View</summary>
-  <img src="screenshots/chart-view.png" alt="Org Chart View" width="800"/>
-</details>
-
-<details>
-  <summary>📝 Add Node Form</summary>
-  <img src="screenshots/add-node-form.png" alt="Add Node Form" width="800"/>
-</details>
-
----
-
-## 💡 Inspiration
-
-This project was inspired by the need for a customizable, modern org chart system that supports dynamic editing and is powered by full-stack JavaScript.
-
----
-
-## 👨‍💻 Author
-
-**Anuj Khurana** – [@anujkhurana](https://github.com/anujkhurana)
-If you like this project, ⭐️ the repo and share it with your network!
-
----
+Contributions are welcome! If you have ideas for improvements or bug fixes, feel free to open an issue or submit a pull request.
 
 ## 📄 License
 
 MIT License. Use freely for learning or commercial purposes.
-
-```
-
----

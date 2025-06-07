@@ -1,6 +1,7 @@
-## 🔗 Live Demo
+## 🔗 Hosted on Render
 
-**Frontend**: [treechartplayground.netlify.app](https://treechartplayground.netlify.app)
+**Backend**: [tree-chart-backend.onrender.com](https://tree-chart-backend.onrender.com)  
+_(Render takes ~50 seconds to cold start)_
 
 ## Features
 
