@@ -126,7 +126,7 @@ onMounted(fetchNodes);
   display: flex;
   flex-direction: column;
   gap: 16px;
-  max-width: 500px;
+  max-width: 800px;
   margin: 0 auto;
   background: #fdfdfd;
   padding: 24px;
@@ -134,6 +134,7 @@ onMounted(fetchNodes);
   box-shadow: 0 6px 24px rgba(0, 0, 0, 0.08);
   font-family: system-ui, sans-serif;
   position: relative;
+  margin-top: 2rem;
 }
 
 .header-txt {

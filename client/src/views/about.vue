@@ -62,6 +62,7 @@
   align-items: center;
   padding: 1rem;
   overflow: auto;
+  margin-top: 1rem;
 }
 
 .content {
