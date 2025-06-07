@@ -5,7 +5,7 @@
     @mouseenter="expandSidebar"
     @mouseleave="collapseSidebar"
   >
-    <div class="title">{{ isExpanded ? "ToolBOX" : "Tools" }}</div>
+    <div class="title">Tools</div>
 
     <div class="button-container">
       <button
@@ -37,10 +37,14 @@ const props = defineProps<{
   fitChart: () => void;
   compactChart: () => void;
   expandAllNodes: () => void;
+  collapseAllNodes: () => void;
   directionBottom?: () => void;
   directionTop?: () => void;
   directionLeft?: () => void;
   directionRight?: () => void;
+  findParent?: () => void;
+  clearMarker?: () => void;
+  clickedNodeID?: string;
 }>();
 
 const toggleFullscreen = () => {
@@ -69,27 +73,51 @@ const sidebarButtons = [
   { id: 2, label: "Fit", icon: "zoom_out_map", clickHandler: () => props.fitChart?.() },
   {
     id: 3,
-    label: "Fit-Horizontal",
+    label: "Top",
     icon: "swap_horiz",
-    clickHandler: () => props.compactChart?.(),
+    clickHandler: () => props.directionTop?.(),
   },
   {
     id: 4,
-    label: "Fit-Vertical",
+    label: "Bottom",
     icon: "swap_vert",
-    clickHandler: () => props.normalChart?.(),
+    clickHandler: () => props.directionBottom?.(),
   },
   {
     id: 5,
+    label: "Right",
+    icon: "swap_vert",
+    clickHandler: () => props.directionRight?.(),
+  },
+  {
+    id: 6,
+    label: "Left",
+    icon: "swap_horiz",
+    clickHandler: () => props.directionLeft?.(),
+  },
+  {
+    id: 7,
     label: "Expand All",
     icon: "unfold_more",
     clickHandler: () => props.expandAllNodes?.(),
   },
   {
-    id: 6,
+    id: 8,
     label: "Collapse All",
     icon: "unfold_less",
     clickHandler: () => props.collapseAllNodes?.(),
+  },
+  {
+    id: 9,
+    label: "Find Parent",
+    icon: "search",
+    clickHandler: () => props.findParent?.(),
+  },
+  {
+    id: 10,
+    label: "Clear Marker",
+    icon: "clear",
+    clickHandler: () => props.clearMarker?.(),
   },
 ];
 </script>
