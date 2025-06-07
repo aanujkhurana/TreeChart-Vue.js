@@ -1,9 +1,4 @@
-Here’s a complete and polished `README.md` tailored for your **Vue 3 Org Chart project** with backend integration, Netlify badge, and a strong developer appeal.
-
----
-
-````md
-# 🌳 TreeChart Playground
+# TreeChart Playground
 
 A visual, interactive Org Chart builder built with **Vue 3**, **D3**, and **Express.js**. Users can view, explore, and dynamically add new nodes to the chart with data persisted on a backend server.
 
