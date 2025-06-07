@@ -23,7 +23,7 @@ export function useOrgChart() {
       .onNodeClick((d) => {
         console.log(d);
         clickedNodeID.value = d.data.id;
-        // markNode(d.data.id);
+        markNode(clickedNodeID.value);
       })
       .nodeContent((d) => {
         const htmlNode = document.getElementById(`vue-node-${d.data.id}`);
@@ -98,23 +98,25 @@ export function useOrgChart() {
   const expandAllNodes = () => chartInstance.value?.expandAll().fit();
   const collapseAllNodes = () => chartInstance.value?.collapseAll().fit();
 
-  // const isMarked = ref(false);
+  const isMarked = ref(false);
 
-  // function markNode(nodeID) {
-  //   if (isMarked.value) {
-  //     isMarked.value = false;
-  //     chartInstance.value.clearHighlighting?.().render();
-  //   } else {
-  //     chartInstance.value?.setHighlighted(nodeID).render();
-  //     isMarked.value = true;
-  //   }
-  // }
-  // function findParent(nodeID) {
-  //   if (!nodeID || !chartInstance.value) return;
-  //   chartInstance.value?.setUpToTheRootHighlighted(nodeID).render();
-  // }
+  function markNode(nodeID) {
+    if (isMarked.value) {
+      isMarked.value = false;
+      chartInstance.value.clearHighlighting?.().render();
+    } else {
+      chartInstance.value?.setHighlighted(nodeID).render();
+      isMarked.value = true;
+    }
+  }
+  function findParent() {
+    if (!clickedNodeID.value || !chartInstance.value) return;
+    chartInstance.value?.setUpToTheRootHighlighted(clickedNodeID.value).render();
+  }
 
   function clearMarker() {
+    isMarked.value = false;
+    clickedNodeID.value = null;
     chartInstance.value.clearHighlighting?.().render();
   }
 
@@ -129,8 +131,7 @@ export function useOrgChart() {
     directionTop,
     directionBottom,
     directionRight,
-    // markNode,
-    // findParent,
+    findParent,
     clearMarker,
   };
 }
