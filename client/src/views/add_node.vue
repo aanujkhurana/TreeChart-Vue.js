@@ -50,7 +50,7 @@
       <input v-model="formData.emojis" placeholder="Whatever" />
     </label>
     <span class="sub-txt">Image will be auto generated</span>
-    <div class="button-group">
+    <div v-if="!loading" class="button-group">
       <button type="button" class="secondary" outline @click="handleReset">Clear</button>
       <button type="submit">+ Add Node</button>
     </div>
@@ -80,6 +80,8 @@ const nodes = ref<{ id: string; name: string }[]>([]);
 const showToast = ref(false);
 const formRef = ref<HTMLFormElement | null>(null);
 
+const loading = ref(false);
+
 const fetchNodes = async () => {
   try {
     // const res = await axios.get("http://localhost:3001/api/nodes");
@@ -93,6 +95,23 @@ const fetchNodes = async () => {
 
 const handleSubmit = async () => {
   try {
+    if (!formData.id || !formData.name) {
+      alert("ID and Name are required fields.");
+      return;
+    }
+    if (nodes.value.some((node) => node.id === formData.id)) {
+      alert("Node with this ID already exists. Please choose a different ID.");
+      return;
+    }
+    if (!formData.parentId) {
+      alert("Parent ID does not exist. Please select a valid parent.");
+      return;
+    }
+
+    if (loading.value) return; // Prevent multiple submissions
+
+    loading.value = true;
+    // Prepare payload
     const payload = {
       id: formData.id,
       parentId: formData.parentId || null,
@@ -111,8 +130,9 @@ const handleSubmit = async () => {
     setTimeout(() => (showToast.value = false), 2000);
     // Reset form
     Object.keys(formData).forEach((key) => (formData[key] = ""));
-    formRef.value.reset();
+    formRef.value?.reset();
     fetchNodes();
+    loading.value = false;
   } catch (error) {
     console.error("Error adding node:", error);
   }
