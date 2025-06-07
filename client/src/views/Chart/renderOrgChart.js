@@ -14,7 +14,7 @@ export function useOrgChart() {
     const chart = new OrgChart()
       .container(container)
       .data(data)
-      .scaleExtent([0.1, 0.75])
+      .scaleExtent([0.2, 1.75])
       .setActiveNodeCentered(true)
       .nodeHeight(() => 230)
       .nodeWidth(() => 380)
@@ -23,31 +23,25 @@ export function useOrgChart() {
       .compactMarginPair(() => 120)
       .siblingsMargin(() => 120)
 
-      // .nodeUpdate(function (d) {
-      //   d3.select(this)
-      //     .select(".node-rect")
-      //     .attr("width", 386)
-      //     .attr("height", 385)
-      //     .attr("stroke", (d) =>
-      //       d.data._highlighted || d.data._upToTheRootHighlighted
-      //         ? "#4285F4"
-      //         : "none"
-      //     )
-      //     .attr("stroke-width", (d) =>
-      //       d.data._highlighted || d.data._upToTheRootHighlighted ? 8 : 2
-      //     )
-      //     .attr("y", -3)
-      //     .attr("x", -3)
-      //     .attr("stroke-linejoin", "round")
-      //     .style("stroke-alignment", "outer");
-      // })
+      .nodeUpdate(function (d) {
+        d3.select(this)
+          .select(".node-rect")
+          .attr("stroke", (d) =>
+            d.data._highlighted || d.data._upToTheRootHighlighted
+              ? "#4285F4"
+              : "none"
+          )
+          .attr("stroke-width", (d) =>
+            d.data._highlighted || d.data._upToTheRootHighlighted ? 6 : 1
+          )
+          .attr("stroke-linejoin", "round")
+          .style("stroke-alignment", "outer");
+      })
 
       .onNodeClick((d) => {
         console.log(d);
         clickedNodeID.value = d.data.id;
-        fitChart();
         markNode(d.data.id);
-        clearMark();
       })
 
       .linkUpdate(function (d) {
@@ -56,7 +50,7 @@ export function useOrgChart() {
             d.data._upToTheRootHighlighted ? "#4285F4" : "#1E1C8A"
           )
           .attr("stroke-width", (d) =>
-            d.data._upToTheRootHighlighted ? 15 : 3
+            d.data._upToTheRootHighlighted ? 6 : 3
           );
         if (d.data._upToTheRootHighlighted) d3.select(this).raise();
       })
@@ -106,26 +100,37 @@ export function useOrgChart() {
   };
 
   const fitChart = () => chartInstance.value?.fit();
-  const normalChart = () => {
+  const directionTop = () => {
     chartInstance.value.compact(true).layout("top").render().fit();
   };
-  const compactChart = () => {
+  const directionLeft = () => {
     chartInstance.value?.layout("left").render().fit();
+  };
+  const directionRight = () => {
+    chartInstance.value?.layout("right").render().fit();
+  };
+  const directionBottom = () => {
+    chartInstance.value?.layout("bottom").render().fit();
   };
   const expandAllNodes = () => chartInstance.value?.expandAll().fit();
   const collapseAllNodes = () => chartInstance.value?.collapseAll().fit();
-  function findRoot(nodeID) {
-    // if (!nodeID || !chartInstance.value) return;
-    chartInstance.value?.setExpanded(nodeID);
-  }
-  const clearMark = () => {
-    if (!chartInstance.value) return;
 
-    chartInstance.value.clearHighlighting?.().render().fit?.();
-  };
+  const isMarked = ref(false);
+
   function markNode(nodeID) {
-    // Check if chart is defined
-    chartInstance.value?.setHighlighted(nodeID);
+    if (isMarked.value) {
+      isMarked.value = false;
+      chartInstance.value.clearHighlighting?.().render();
+    } else {
+      chartInstance.value?.setHighlighted(nodeID).render();
+      findParent(nodeID);
+      isMarked.value = true;
+    }
+  }
+
+  function findParent(nodeID) {
+    if (!nodeID || !chartInstance.value) return;
+    chartInstance.value?.setUpToTheRootHighlighted(nodeID).render();
   }
 
   return {
@@ -133,11 +138,13 @@ export function useOrgChart() {
     clickedNodeID,
     render,
     fitChart,
-    compactChart,
+    directionLeft,
     expandAllNodes,
     collapseAllNodes,
-    findRoot,
-    clearMark,
-    normalChart,
+    directionTop,
+    directionBottom,
+    directionRight,
+    markNode,
+    findParent,
   };
 }

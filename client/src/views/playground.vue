@@ -10,6 +10,7 @@
     :directionTop="directionTop"
     :directionLeft="directionLeft"
     :directionRight="directionRight"
+    :findParent="findParent"
   />
 </template>
 <script setup lang="ts">
@@ -27,9 +28,7 @@ const apiURL = import.meta.env.VITE_API_URL;
 const {
   render,
   fitChart,
-  compactChart,
   expandAllNodes,
-  collapseAllNodes,
   directionBottom,
   directionTop,
   directionLeft,
