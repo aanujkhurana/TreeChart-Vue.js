@@ -1,50 +1,63 @@
 <template>
-  <div :class="{ 'fullscreen-container': isFullscreen }">
-    <div class="chart-container" ref="chartContainer"></div>
-  </div>
+  <div class="chart-container" ref="chartContainer"></div>
   <FloatingSidebar
     :fitChart="fitChart"
     :compactChart="directionTop"
     :expandAllNodes="expandAllNodes"
+    :collapseAllNodes="collapseAllNodes"
     :directionBottom="directionBottom"
     :directionTop="directionTop"
     :directionLeft="directionLeft"
     :directionRight="directionRight"
+    :clearMarker="clearMarker"
     :findParent="findParent"
+    :clickedNodeID="clickedNodeID"
   />
+  <!-- chart node HTML -->
+  <div
+    v-for="node in orgData"
+    :key="node.id"
+    :id="`vue-node-${node.id}`"
+    style="display: none"
+  >
+    <NodeUI :data="node" />
+  </div>
 </template>
 <script setup lang="ts">
-import { onMounted, ref } from "vue";
+import { nextTick, onMounted, ref } from "vue";
 import FloatingSidebar from "@/components/FloatingSidebar.vue";
 import * as d3 from "d3";
 import { useOrgChart } from "./Chart/renderOrgChart";
+import NodeUI from "./Chart/node_ui.vue";
 
-// Create a ref for the TreeView component
 const chartRef = ref();
 const chartContainer = ref<HTMLElement | null>(null);
-// const clickedNodeID = ref<string | null>(null);
-const apiURL = import.meta.env.VITE_API_URL;
+const apiURL = import.meta.env.VITE_API_URL || "http://localhost:3001";
+
+const orgData = ref([]);
 
 const {
   render,
   fitChart,
   expandAllNodes,
+  collapseAllNodes,
   directionBottom,
   directionTop,
   directionLeft,
   directionRight,
+  clearMarker,
   findParent,
-  clickedNodeID: clickedNodeIDRef,
+  clickedNodeID,
 } = useOrgChart();
 
 onMounted(async () => {
   console.log("Chart functions available:", chartRef.value?.fitChart);
   console.log("Backend URL:", apiURL);
   try {
-    // const data = await d3.json("/src/assets/org-data.json");
-    // const data = await d3.json("http://localhost:3001/api/nodes");
     const data = await d3.json(`${apiURL}/api/nodes`);
-    render(chartContainer.value, data);
+    orgData.value = data; // so Vue renders ChartUI components
+    await nextTick(); // wait until DOM renders hidden divs
+    render(chartContainer.value, orgData.value);
   } catch (error) {
     console.error("Error loading data:", error);
   }
@@ -54,7 +67,6 @@ onMounted(async () => {
 <style scoped>
 .chart-container,
 .svg-chart-container,
-.fullscreen-container,
 html,
 body {
   width: 100%;
@@ -63,8 +75,5 @@ body {
   padding: 0;
   background: white !important;
   overflow: hidden;
-}
-.chart-container.fullscreen-container {
-  background-color: white;
 }
 </style>
