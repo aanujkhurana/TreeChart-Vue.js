@@ -1,16 +1,17 @@
-
+[![Vue Version](https://img.shields.io/badge/Vue-3.x-brightgreen.svg)](https://vuejs.org/)
 [![Vite Version](https://img.shields.io/badge/Vite-4.x-yellow.svg)](https://vitejs.dev)
-[![Vue Version](https://img.shields.io/badge/Vue-2.x-brightgreen.svg)](https://vuejs.org/)
-[![TypeScript Version](https://img.shields.io/badge/typescript-4.x-blue.svg)](https://www.typescriptlang.org/)
-[![D3 Version](https://img.shields.io/badge/D3-6.x-orange.svg)](https://d3js.org/)
+[![TypeScript Version](https://img.shields.io/badge/TypeScript-5.x-blue.svg)](https://www.typescriptlang.org/)
+[![D3 Version](https://img.shields.io/badge/D3-7.x-orange.svg)](https://d3js.org/)
+
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/anujkhurana/treechart-playground/pulls)
+
+[![Netlify Status](https://api.netlify.com/api/v1/badges/ee1abb85-9b39-42a4-8c7a-63ccbb89c77c/deploy-status)](https://app.netlify.com/projects/treechartplayground/deploys)
 
 # TreeChart Playground
 A highly customized version of the d3-org-chart. It provides a flexible and visually appealing way to display hierarchical data in a tree-chart format.
 
 TreeChart Playground is a visual, Org Chart built with **Vue 3**, **D3**, and **Express.js**. Users can view, explore, and dynamically add new nodes to the chart with data persisted on a backend server.
-
-[![Netlify Status](https://api.netlify.com/api/v1/badges/ee1abb85-9b39-42a4-8c7a-63ccbb89c77c/deploy-status)](https://app.netlify.com/projects/treechartplayground/deploys)
-[![Render Status](https://render.com/api/websites/tree-chart-backend/status)](https://render.com/deploys/tree-chart-backend)
 
 ## 🔗 Live Demo
 
